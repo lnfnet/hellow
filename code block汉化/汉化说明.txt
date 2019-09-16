@@ -1,0 +1,5 @@
+C:\Program Files (x86)\CodeBlocks\share\CodeBlocks\locale\zh_CN\zh_CN.mo
+
+然后我们进入Code Blocks软件，点击顶部的Settings菜单，选择下拉菜单中的Environment选项，如下图所示
+
+选view   选国际化 选chinese(simplified)
