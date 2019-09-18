@@ -1,0 +1,8 @@
+# depslib dependency file v1.0
+1568817832 source:e:\github\hellow\c++\main.cpp
+	<iostream>
+	"GradeBook.h"
+
+1568818217 e:\github\hellow\c++\gradebook.h
+	<string>
+
