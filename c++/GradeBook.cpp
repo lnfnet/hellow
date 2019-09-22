@@ -7,8 +7,9 @@ using namespace std;
 
 // constructor initializes courseName with string supplied as argument
 GradeBook::GradeBook( string name )
-   : courseName( name ) // member initializer to initialize courseName
+   // member initializer to initialize courseName
 {
+    setCourseName(name);
    // empty body
 } // end GradeBook constructor
 

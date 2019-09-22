@@ -9,7 +9,7 @@ using namespace std;
 int main()
 {
    // create two GradeBook objects
-   GradeBook gradeBook1( "CS101 Introduction to C++ Programming" );
+   GradeBook gradeBook1( "CS101 Introduction to C++ Programming1233243434343434" );
    GradeBook gradeBook2( "CS102 Data Structures in C++" );
 
    // display initial value of courseName for each GradeBook
