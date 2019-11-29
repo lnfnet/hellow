@@ -1,0 +1,15 @@
+INPUT(
+./release\main.o
+./release\mainwindow.o
+./release\stackedwidget.o
+./release\guitest.o
+./release\persongui.o
+./release\stackwindowspersongui.o
+./release\dialgotest.o
+./release\moc_mainwindow.o
+./release\moc_stackedwidget.o
+./release\moc_guitest.o
+./release\moc_persongui.o
+./release\moc_stackwindowspersongui.o
+./release\moc_dialgotest.o
+);

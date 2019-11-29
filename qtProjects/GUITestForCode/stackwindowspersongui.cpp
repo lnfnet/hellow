@@ -1,13 +1,13 @@
-#include "stackedwidget.h"
+#include "stackwindowspersongui.h"
+
 #include <QLayout>
 #include <QHBoxLayout>
 
-stackedWidget::stackedWidget(QWidget *parent)
-    : QDialog(parent)
+stackWindowsPersonGui::stackWindowsPersonGui(QWidget *parent) : QWidget(parent)
 {
-    setWindowTitle("stackedWidget for dialog");
+    setWindowTitle("stackedWidgetsPersonGUI for widgets");
     list = new QListWidget(this);
-    list->insertItem(0,tr("window0"));
+    list->insertItem(0,tr("人员信息"));
     list->insertItem(1,tr("window1"));
     list->insertItem(2,tr("window2"));
 
@@ -16,9 +16,11 @@ stackedWidget::stackedWidget(QWidget *parent)
     label3= new QLabel(tr("WindwoTest3"));
 
     stack= new QStackedWidget(this);
-    stack->addWidget(label1);
-    stack->addWidget(label2);
-    stack->addWidget(label3);
+    person_gui = new personGui();
+
+    stack->addWidget(person_gui);
+    stack->addWidget(person_gui);
+    stack->addWidget(person_gui);
 
     QHBoxLayout *mainLayout = new QHBoxLayout(this);
     mainLayout->setMargin(5);
@@ -30,8 +32,4 @@ stackedWidget::stackedWidget(QWidget *parent)
 
     connect(list,SIGNAL(currentRowChanged(int)),stack,SLOT(setCurrentIndex(int)));
     //用列表的当前行变更信号--绑定stack 里的设置当前索引
-}
-
-stackedWidget::~stackedWidget()
-{
 }

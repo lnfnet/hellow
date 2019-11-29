@@ -1,6 +1,9 @@
 #include "mainwindow.h"
 #include "stackedwidget.h"
-#include "persongui.h"
+//#include "persongui.h"
+#include "stackwindowspersongui.h"
+#include "dialgotest.h"
+
 #include <QApplication>
 #include <qfont.h>
 #include <qsplitter.h>
@@ -46,6 +49,13 @@ int main(int argc, char *argv[])
 
     personGui p;
     p.show();
+
+    stackWindowsPersonGui wp;
+    wp.show();
+
+    dialgoTest d;
+    d.show();
+
 
     return a.exec();
 }

@@ -41,8 +41,6 @@ private:
     QPushButton *CancelBtn;
     QHBoxLayout *ButtomLayout;
 
-
-
 public:
     explicit personGui(QWidget *parent = 0);
 

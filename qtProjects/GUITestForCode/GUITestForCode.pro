@@ -16,9 +16,13 @@ SOURCES += main.cpp\
         mainwindow.cpp \
     stackedwidget.cpp \
     guitest.cpp \
-    persongui.cpp
+    persongui.cpp \
+    stackwindowspersongui.cpp \
+    dialgotest.cpp
 
 HEADERS  += mainwindow.h \
     stackedwidget.h \
     guitest.h \
-    persongui.h
+    persongui.h \
+    stackwindowspersongui.h \
+    dialgotest.h
