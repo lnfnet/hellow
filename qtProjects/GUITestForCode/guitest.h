@@ -12,6 +12,7 @@ public:
 signals:
 
 public slots:
+   void slottimedone();
 };
 
 #endif // GUITEST_H

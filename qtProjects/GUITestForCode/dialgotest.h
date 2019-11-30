@@ -5,27 +5,32 @@
 #include <QPushButton>
 #include <QGridLayout>
 #include <QLineEdit>
-//#include <QColorDialog>
+#include <QFrame>
 
 class dialgoTest : public QDialog
 {
     Q_OBJECT
-public:
+private:
     QPushButton *fileBtn;
     QLineEdit *fileLineEdit;
-    //QPushButton *colorBtn;
-    //QFrame *colorFrame;
-
-
+    QPushButton *colorBtn;
+    QFrame *colorFrame;
+    QPushButton *fontBtn;
+    QLineEdit *fontLineEdit;
+    QPushButton *nameBtn;
+    QLineEdit *nameLineEdit;
     QGridLayout *mainLayout;
-
+public:
     explicit dialgoTest(QDialog *parent = 0);
 
 signals:
 
-public slots:
+private slots:
     void showFile();
-    //void showColor();
+    void showColor();
+    void showFont();
+    void changeName();
+
 };
 
 #endif // DIALGOTEST_H

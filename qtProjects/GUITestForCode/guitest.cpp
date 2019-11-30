@@ -29,3 +29,7 @@ QTimer *time_clock=new QTimer(parent);
 connect(time_clock,SIGNAL(timeout()),this,SLOT(slottimedone()));
 time_clock->start(2000);
 }
+void guiTest::slottimedone()
+{
+
+}
