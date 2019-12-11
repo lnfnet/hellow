@@ -18,11 +18,16 @@ SOURCES += main.cpp\
     guitest.cpp \
     persongui.cpp \
     stackwindowspersongui.cpp \
-    dialgotest.cpp
+    dialgotest.cpp \
+    dialog.cpp
 
 HEADERS  += mainwindow.h \
     stackedwidget.h \
     guitest.h \
     persongui.h \
     stackwindowspersongui.h \
-    dialgotest.h
+    dialgotest.h \
+    dialog.h
+
+FORMS += \
+    dialog.ui

@@ -9,6 +9,7 @@
 #include <qsplitter.h>
 #include <qtextedit.h>
 #include <guitest.h>
+#include <dialog.h>
 
 int main(int argc, char *argv[])
 {
@@ -55,6 +56,9 @@ int main(int argc, char *argv[])
 
     dialgoTest d;
     d.show();
+
+    Dialog mytoolbox;
+    mytoolbox.show();
 
 
     return a.exec();

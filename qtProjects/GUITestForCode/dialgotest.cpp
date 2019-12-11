@@ -5,6 +5,7 @@
 #include <qcolordialog.h>
 #include <QFontDialog>
 #include <qinputdialog.h>
+#include <QMessageBox>
 
 dialgoTest::dialgoTest(QDialog *parent) : QDialog(parent)
 {
@@ -29,6 +30,18 @@ dialgoTest::dialgoTest(QDialog *parent) : QDialog(parent)
     nameLineEdit = new QLineEdit();
     nameLineEdit ->setText(tr("赖南飞"));
 
+    sexBtn = new QPushButton("选择性别");
+    sexComboBox =new QComboBox();
+    sexComboBox ->addItem(tr("男"));
+    sexComboBox ->addItem(tr("女"));
+
+    questionBtn = new QPushButton("自定义对话框");
+    infomationBtn = new QPushButton("信息框");
+    warningBtn = new QPushButton("warning!");
+    criticalBtn = new QPushButton("critical!");
+    aboutBtn = new QPushButton("about");
+    aboutQtBtn = new QPushButton("aboutQt");
+
     mainLayout = new QGridLayout(this);
     mainLayout ->addWidget(fileBtn,0,0);
     mainLayout ->addWidget(fileLineEdit,0,1);
@@ -38,11 +51,31 @@ dialgoTest::dialgoTest(QDialog *parent) : QDialog(parent)
     mainLayout ->addWidget(fontLineEdit,2,1);
     mainLayout ->addWidget(nameBtn,3,0);
     mainLayout ->addWidget(nameLineEdit,3,1);
+    mainLayout ->addWidget(sexBtn,4,0);
+    mainLayout ->addWidget(sexComboBox,4,1);
+
+    mainLayout ->addWidget(questionBtn,5,0);
+    mainLayout ->addWidget(infomationBtn,5,1);
+    mainLayout ->addWidget(warningBtn,6,0);
+    mainLayout ->addWidget(criticalBtn,6,1);
+    mainLayout ->addWidget(aboutBtn,7,0);
+    mainLayout ->addWidget(aboutQtBtn,7,1);
+
+
 
     connect(fileBtn,SIGNAL(clicked()),this,SLOT(showFile()));
     connect(colorBtn,SIGNAL(clicked()),this,SLOT(showColor()));
     connect(fontBtn,SIGNAL(clicked()),this,SLOT(showFont()));
     connect(nameBtn,SIGNAL(clicked()),this,SLOT(changeName()));
+    connect(sexBtn,SIGNAL(clicked(bool)),this,SLOT(changeSex()));
+
+    connect(questionBtn,SIGNAL(clicked(bool)),this,SLOT(showQuestionMsg()));
+    connect(infomationBtn,SIGNAL(clicked(bool)),this,SLOT(showInfomaingMsg()));
+    connect(warningBtn,SIGNAL(clicked(bool)),this,SLOT(showWarningMsg()));
+    connect(criticalBtn,SIGNAL(clicked(bool)),this,SLOT(showCriticalMsg()));
+    connect(aboutBtn,SIGNAL(clicked(bool)),this,SLOT(showAboutMsg()));
+    connect(aboutQtBtn,SIGNAL(clicked(bool)),this,SLOT(showAboutQtMsg()));
+
 }
 
 void dialgoTest::showFile()
@@ -82,4 +115,66 @@ void dialgoTest::changeName()
     {
         nameLineEdit->setText(text);
     }
+}
+
+void dialgoTest::changeSex()
+{
+    QStringList SexItems;
+    SexItems<<tr("男")<<tr("女");
+
+    bool ok;
+    QString SexItem= QInputDialog::getItem(this,tr("选择对话框"),
+                                            tr("请选选择："),SexItems,0,false,&ok);
+
+    if(ok && !SexItem.isEmpty())
+        sexComboBox ->setCurrentText(SexItem);
+}
+
+void dialgoTest::showQuestionMsg()
+{
+    switch (QMessageBox::question(this,tr("Question消息框"),
+                                  tr("您现在修改完成，是否结速程序列"),
+                                  QMessageBox::Ok|QMessageBox::Cancel,QMessageBox::Ok))
+    {
+    case QMessageBox::Ok:
+        questionBtn->setText("你选的是OKl");
+        break;
+    case QMessageBox::Cancel:
+        questionBtn->setText("你选的是cancel");
+        break;
+    default:
+        break;
+    }
+    return;
+
+}
+
+void dialgoTest::showInfomaingMsg()
+{
+    QMessageBox::information(this,tr("infomation消息框"),tr("这是Infomation"));
+    return;
+}
+
+void dialgoTest::showWarningMsg()
+{
+     QMessageBox::warning(this,tr("警告消息框"),tr("这是Infomation"));
+     return;
+}
+
+void dialgoTest::showCriticalMsg()
+{
+    QMessageBox::critical(this,tr("严重消息框"),tr("这是Infomation"));
+    return;
+}
+
+void dialgoTest::showAboutMsg()
+{
+    QMessageBox::about(this,tr("about消息框"),tr("这是Infomation"));
+    return;
+}
+
+void dialgoTest::showAboutQtMsg()
+{
+     QMessageBox::aboutQt(this,tr("aboutQt消息框"));
+     return;
 }

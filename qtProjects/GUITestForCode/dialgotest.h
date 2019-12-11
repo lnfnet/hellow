@@ -6,6 +6,7 @@
 #include <QGridLayout>
 #include <QLineEdit>
 #include <QFrame>
+#include <QComboBox>
 
 class dialgoTest : public QDialog
 {
@@ -19,7 +20,20 @@ private:
     QLineEdit *fontLineEdit;
     QPushButton *nameBtn;
     QLineEdit *nameLineEdit;
+    QPushButton *sexBtn;
+    QComboBox *sexComboBox;
+
+    QPushButton *questionBtn;
+    QPushButton *infomationBtn;
+    QPushButton *warningBtn;
+    QPushButton *criticalBtn;
+    QPushButton *aboutBtn;
+    QPushButton *aboutQtBtn;
+
+
     QGridLayout *mainLayout;
+
+
 public:
     explicit dialgoTest(QDialog *parent = 0);
 
@@ -30,6 +44,15 @@ private slots:
     void showColor();
     void showFont();
     void changeName();
+    void changeSex();
+
+    void showQuestionMsg();
+    void showInfomaingMsg();
+    void showWarningMsg();
+    void showCriticalMsg();
+    void showAboutMsg();
+    void showAboutQtMsg();
+
 
 };
 

@@ -6,10 +6,12 @@ INPUT(
 ./debug\persongui.o
 ./debug\stackwindowspersongui.o
 ./debug\dialgotest.o
+./debug\dialog.o
 ./debug\moc_mainwindow.o
 ./debug\moc_stackedwidget.o
 ./debug\moc_guitest.o
 ./debug\moc_persongui.o
 ./debug\moc_stackwindowspersongui.o
 ./debug\moc_dialgotest.o
+./debug\moc_dialog.o
 );
