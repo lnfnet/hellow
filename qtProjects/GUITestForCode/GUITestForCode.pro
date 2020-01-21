@@ -19,7 +19,8 @@ SOURCES += main.cpp\
     persongui.cpp \
     stackwindowspersongui.cpp \
     dialgotest.cpp \
-    dialog.cpp
+    dialog.cpp \
+    qq.cpp
 
 HEADERS  += mainwindow.h \
     stackedwidget.h \
@@ -27,7 +28,8 @@ HEADERS  += mainwindow.h \
     persongui.h \
     stackwindowspersongui.h \
     dialgotest.h \
-    dialog.h
+    dialog.h \
+    qq.h
 
 FORMS += \
     dialog.ui

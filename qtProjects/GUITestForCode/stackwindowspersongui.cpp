@@ -19,9 +19,9 @@ stackWindowsPersonGui::stackWindowsPersonGui(QWidget *parent) : QWidget(parent)
     person_gui = new personGui();
 
     stack->addWidget(person_gui);
-    stack->addWidget(person_gui);
-    stack->addWidget(person_gui);
-
+    stack->addWidget(label2);
+    stack->addWidget(label3);
+//布局
     QHBoxLayout *mainLayout = new QHBoxLayout(this);
     mainLayout->setMargin(5);
     mainLayout->setSpacing(5);

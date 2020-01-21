@@ -10,6 +10,7 @@
 #include <qtextedit.h>
 #include <guitest.h>
 #include <dialog.h>
+#include <qq.h>
 
 int main(int argc, char *argv[])
 {
@@ -59,6 +60,9 @@ int main(int argc, char *argv[])
 
     Dialog mytoolbox;
     mytoolbox.show();
+
+    qq myQQ;
+    myQQ.show();
 
 
     return a.exec();
