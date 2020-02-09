@@ -20,7 +20,8 @@ SOURCES += main.cpp\
     stackwindowspersongui.cpp \
     dialgotest.cpp \
     dialog.cpp \
-    qq.cpp
+    qq.cpp \
+    progressdlg.cpp
 
 HEADERS  += mainwindow.h \
     stackedwidget.h \
@@ -29,7 +30,8 @@ HEADERS  += mainwindow.h \
     stackwindowspersongui.h \
     dialgotest.h \
     dialog.h \
-    qq.h
+    qq.h \
+    progressdlg.h
 
 FORMS += \
     dialog.ui

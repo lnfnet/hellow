@@ -7,6 +7,8 @@ INPUT(
 ./release\stackwindowspersongui.o
 ./release\dialgotest.o
 ./release\dialog.o
+./release\qq.o
+./release\progressdlg.o
 ./release\moc_mainwindow.o
 ./release\moc_stackedwidget.o
 ./release\moc_guitest.o
@@ -14,4 +16,6 @@ INPUT(
 ./release\moc_stackwindowspersongui.o
 ./release\moc_dialgotest.o
 ./release\moc_dialog.o
+./release\moc_qq.o
+./release\moc_progressdlg.o
 );
