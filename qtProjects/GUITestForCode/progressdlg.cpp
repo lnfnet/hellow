@@ -2,17 +2,18 @@
 #include <QFont>
 #include <QProgressDialog>
 
-ProgressDlg::ProgressDlg(QWidget *parent):QDialg(parent)
+
+ProgressDlg::ProgressDlg(QWidget *parent):QDialog(parent)
 {
     QFont font("ZYSong18030",12);
     setFont(font);
     setWindowTitle(tr("progress"));
 
     FileNum = new QLabel;
-    FileNum->settext(tr("文件数目"));
+    FileNum->setText(tr("文件数目"));
 
-    FileNumLineEdit = new QLinEdit;
-    FileNumLineEdit->setText(tr("10000"));
+    FileNumLineEdit = new QLineEdit;
+    FileNumLineEdit->setText(tr("1000000"));
 
     ProgressType = new QLabel;
     ProgressType ->setText(tr("显示类型"));
@@ -33,7 +34,7 @@ ProgressDlg::ProgressDlg(QWidget *parent):QDialg(parent)
     mainLayout->addWidget(progressBar,2,0,1,2);
     mainLayout->addWidget(startBtn,3,1);
     mainLayout->setMargin(15);
-    mainlayout->setSpacing(10);
+    mainLayout->setSpacing(10);
 
     connect(startBtn,SIGNAL(clicked(bool)),this,SLOT(startProgress()));
 
@@ -55,7 +56,23 @@ void ProgressDlg::startProgress()
     }
     else if(comboBox->currentIndex()==1)
     {
-        QProgressDialog *progrssDialog =QProgressDialog(this);
+        QProgressDialog *progrssDialog = new QProgressDialog(this);
+        QFont font("ZYSong18030",12);
+        progrssDialog ->setFont(font);
+        progrssDialog ->setWindowModality(Qt::WindowModal);
+        progrssDialog ->setMinimumDuration(5);
+        progrssDialog ->setWindowTitle(tr("Please Wait"));
+        progrssDialog ->setLabelText(tr("copying..."));
+        progrssDialog ->setCancelButtonText(tr("cancel"));
+        progrssDialog ->setRange(0,num);
+
+        for(int i=1;i<num+1;i++)
+        {
+            progrssDialog ->setValue(i);
+            if(progrssDialog->wasCanceled())
+                return;
+        }
+
     }
 
 }

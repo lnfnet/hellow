@@ -7,6 +7,8 @@
 #include <QLineEdit>
 #include <QFrame>
 #include <QComboBox>
+#include <QLabel>
+
 
 class dialgoTest : public QDialog
 {
@@ -29,6 +31,10 @@ private:
     QPushButton *criticalBtn;
     QPushButton *aboutBtn;
     QPushButton *aboutQtBtn;
+    
+    QPushButton *customMessageBtn;
+    QLabel *label;
+    
 
 
     QGridLayout *mainLayout;
@@ -52,6 +58,8 @@ private slots:
     void showCriticalMsg();
     void showAboutMsg();
     void showAboutQtMsg();
+    
+    void showCustomMessage();
 
 
 };

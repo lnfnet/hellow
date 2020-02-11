@@ -35,12 +35,16 @@ dialgoTest::dialgoTest(QDialog *parent) : QDialog(parent)
     sexComboBox ->addItem(tr("男"));
     sexComboBox ->addItem(tr("女"));
 
-    questionBtn = new QPushButton("自定义对话框");
+    questionBtn = new QPushButton("问题对话框");
     infomationBtn = new QPushButton("信息框");
     warningBtn = new QPushButton("warning!");
     criticalBtn = new QPushButton("critical!");
     aboutBtn = new QPushButton("about");
     aboutQtBtn = new QPushButton("aboutQt");
+    
+    customMessageBtn = new QPushButton("自定义");
+    label = new QLabel;
+    label->setFrameStyle(QFrame::Panel|QFrame::Sunken);
 
     mainLayout = new QGridLayout(this);
     mainLayout ->addWidget(fileBtn,0,0);
@@ -60,6 +64,8 @@ dialgoTest::dialgoTest(QDialog *parent) : QDialog(parent)
     mainLayout ->addWidget(criticalBtn,6,1);
     mainLayout ->addWidget(aboutBtn,7,0);
     mainLayout ->addWidget(aboutQtBtn,7,1);
+    mainLayout ->addWidget(customMessageBtn,8,0);
+    mainLayout ->addWidget(label,8,1);
 
 
 
@@ -75,6 +81,8 @@ dialgoTest::dialgoTest(QDialog *parent) : QDialog(parent)
     connect(criticalBtn,SIGNAL(clicked(bool)),this,SLOT(showCriticalMsg()));
     connect(aboutBtn,SIGNAL(clicked(bool)),this,SLOT(showAboutMsg()));
     connect(aboutQtBtn,SIGNAL(clicked(bool)),this,SLOT(showAboutQtMsg()));
+
+    connect(customMessageBtn,SIGNAL(clicked(bool)),this,SLOT(showCustomMessage()));
 
 }
 
@@ -177,4 +185,27 @@ void dialgoTest::showAboutQtMsg()
 {
      QMessageBox::aboutQt(this,tr("aboutQt消息框"));
      return;
+}
+
+void dialgoTest::showCustomMessage()
+{
+    label->setText((tr("custom message box")));
+
+    QMessageBox customMsgBox;
+    customMsgBox.setWindowTitle(tr("用户自定义消息框"));
+    QPushButton *yesBtn=customMsgBox.addButton(tr("yes"),QMessageBox::ActionRole);
+    QPushButton *noBtn=customMsgBox.addButton(tr("no"),QMessageBox::ActionRole);
+    QPushButton *cancelBtn=customMsgBox.addButton(tr("cancel"),QMessageBox::ActionRole);
+
+    customMsgBox.setText(tr("这是一个用户自定义的消息框!"));
+    customMsgBox.setIconPixmap(QPixmap("qt.png"));
+    customMsgBox.exec();
+
+    if(customMsgBox.clickedButton()==yesBtn)
+        label->setText(tr("custom message box/yes"));
+    if(customMsgBox.clickedButton()==noBtn)
+        label->setText(tr("custom message box/no"));
+    if(customMsgBox.clickedButton()==cancelBtn)
+        label->setText(tr("custom message box/cancel"));
+    return;
 }

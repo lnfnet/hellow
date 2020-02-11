@@ -7,6 +7,7 @@
 #include <QPushButton>
 #include <QGridLayout>
 #include <QProgressBar>
+#include <QDialog>
 
 
 

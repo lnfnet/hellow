@@ -11,6 +11,7 @@
 #include <guitest.h>
 #include <dialog.h>
 #include <qq.h>
+#include <progressdlg.h>
 
 int main(int argc, char *argv[])
 {
@@ -63,6 +64,9 @@ int main(int argc, char *argv[])
 
     qq myQQ;
     myQQ.show();
+
+    ProgressDlg myProDlg;
+    myProDlg.show();
 
 
     return a.exec();
