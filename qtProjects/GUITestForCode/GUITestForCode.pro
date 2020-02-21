@@ -21,7 +21,8 @@ SOURCES += main.cpp\
     dialgotest.cpp \
     dialog.cpp \
     qq.cpp \
-    progressdlg.cpp
+    progressdlg.cpp \
+    palatte.cpp
 
 HEADERS  += mainwindow.h \
     stackedwidget.h \
@@ -31,7 +32,8 @@ HEADERS  += mainwindow.h \
     dialgotest.h \
     dialog.h \
     qq.h \
-    progressdlg.h
+    progressdlg.h \
+    palatte.h
 
 FORMS += \
     dialog.ui

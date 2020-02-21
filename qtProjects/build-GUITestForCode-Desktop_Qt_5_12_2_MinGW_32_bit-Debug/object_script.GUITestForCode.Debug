@@ -8,6 +8,7 @@ debug/dialgotest.o
 debug/dialog.o
 debug/qq.o
 debug/progressdlg.o
+debug/palatte.o
 debug/moc_mainwindow.o
 debug/moc_stackedwidget.o
 debug/moc_guitest.o
@@ -17,3 +18,4 @@ debug/moc_dialgotest.o
 debug/moc_dialog.o
 debug/moc_qq.o
 debug/moc_progressdlg.o
+debug/moc_palatte.o

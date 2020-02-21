@@ -12,6 +12,7 @@
 #include <dialog.h>
 #include <qq.h>
 #include <progressdlg.h>
+#include <palatte.h>
 
 int main(int argc, char *argv[])
 {
@@ -67,6 +68,9 @@ int main(int argc, char *argv[])
 
     ProgressDlg myProDlg;
     myProDlg.show();
+
+    palatte mypalatte;
+    mypalatte.show();
 
 
     return a.exec();
