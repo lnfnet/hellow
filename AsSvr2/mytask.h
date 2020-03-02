@@ -10,6 +10,9 @@ class MyTask : public QObject,public QRunnable
     Q_OBJECT
 public:
     MyTask();
+signals:
+    void Result(int Number);
+protected:
     void run();
 };
 

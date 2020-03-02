@@ -29,10 +29,22 @@ void MyClient::disconnected()
 void MyClient::readyRead()
 {
     qDebug()<<socket->readAll();
-    //Time Consumer - deadlock
+    //Time Consumer - deadlock ;
+
+    MyTask *mytask = new MyTask();
+    mytask->setAutoDelete(true);
+    connect(mytask,SIGNAL(Result(int)),this,SLOT(TaskResult(int)),Qt::QueuedConnection);
+    QThreadPool::globalInstance()->start(mytask);
+
 
 }
 void MyClient::TaskResult(int Number)
 {
+    QByteArray Buffer;
+    Buffer.append("Task Result =");
+    Buffer.append(QString::number(Number));
+    //Buffer.append("\n");
+
+    socket->write(Buffer);
 
 }
