@@ -20,4 +20,5 @@ void insert_sqlist(SqList L,datatype x ,int i)
 void main()
 {
 	SqList L;  //initiate L
+	printf("初始化sqllist成功！");
 }
