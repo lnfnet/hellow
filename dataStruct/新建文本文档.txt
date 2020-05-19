@@ -1,7 +1,4 @@
-#ifndef _INIT_H
-#define _INIT_H
- 
-#include<stdio.h>
+﻿ #include<stdio.h>
 #include<stdlib.h>
  
 #define TRUE 1
@@ -11,11 +8,8 @@
 #define OVERFLOW -2
 typedef int Status;
  
-#endif
 
 
-#ifndef _SEQUENCE_H
-#define _SEQUENCE_H
  
 #define LISTSIZE 100 
  
@@ -43,14 +37,8 @@ Status display_list(SqList L);
 //合并两个非递减的顺序列表
 Status merge_list(SqList La, SqList Lb, SqList &Lc);
  
-#endif
 
-"Sequence.c":
 
-#include"init.h"
-#include"Sequence.h"
- 
- 
 //初始化顺序列表
 Status init_sqlist(SqList &L)
 {
@@ -175,11 +163,7 @@ Status merge_list(SqList La, SqList Lb, SqList &Lc)
 	return OK;
 }
 
-"main.c":
 
-#include"init.h"
-#include"Sequence.h"
- 
 void test_sequence()
 {
 	SqList L;
@@ -227,7 +211,3 @@ int main()
 	test_sequence();
 	return 0;
 }
-
-————————————————
-版权声明：本文为CSDN博主「_云淡风轻」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。
-原文链接：https://blog.csdn.net/fzh1900/java/article/details/13774575
