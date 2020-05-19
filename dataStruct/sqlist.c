@@ -48,14 +48,13 @@ int local_sqlist()
 {
 	
 }
-void main()
+int main()
 {
 	SqList L; 
-	L.last=0;
-	 //initiate L
+	L.last=1;//initiate L
 	insert_sqlist(L,10,1);
 	insert_sqlist(L,20,2);
 	
 	print_sqlist(L);
-	
+	return 0;	
 }
