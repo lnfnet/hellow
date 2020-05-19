@@ -1,4 +1,9 @@
-ï»¿ #include<stdio.h>
+/*
+c++±àÒëÆ÷  &Ó¦ÓÃ
+
+*/
+
+ #include<stdio.h>
 #include<stdlib.h>
  
 #define TRUE 1
@@ -17,35 +22,35 @@ typedef char Item;
  
 typedef struct 
 {
-	Item * add;  //é¡ºåºåˆ—è¡¨çš„é¦–åœ°å€
-	int length;  //å½“å‰é¡ºåºåˆ—è¡¨çš„é•¿åº¦
-	int listsize; //é¡ºåºåˆ—è¡¨çš„å®¹é‡
+	Item * add;  //Ë³ĞòÁĞ±íµÄÊ×µØÖ·
+	int length;  //µ±Ç°Ë³ĞòÁĞ±íµÄ³¤¶È
+	int listsize; //Ë³ĞòÁĞ±íµÄÈİÁ¿
 }SqList;
  
-//åˆå§‹åŒ–é¡ºåºåˆ—è¡¨
+//³õÊ¼»¯Ë³ĞòÁĞ±í
 Status init_sqlist(SqList &L);
  
-//æ’å…¥å…ƒç´ eåˆ°é¡ºåºåˆ—è¡¨çš„çš„ç¬¬iä¸ªä½ç½®
+//²åÈëÔªËØeµ½Ë³ĞòÁĞ±íµÄµÄµÚi¸öÎ»ÖÃ
 Status insert_list(SqList &L, int i, Item e);
  
-//åˆ é™¤ç¬¬iä¸ªå…ƒç´ ï¼Œå¹¶èµ‹å€¼ç»™e
+//É¾³ıµÚi¸öÔªËØ£¬²¢¸³Öµ¸øe
 Status delete_list(SqList &L, int i, Item &e);
  
-//æ˜¾ç¤ºé¡ºåºåˆ—è¡¨ä¸­çš„å…ƒç´ 
+//ÏÔÊ¾Ë³ĞòÁĞ±íÖĞµÄÔªËØ
 Status display_list(SqList L);
  
-//åˆå¹¶ä¸¤ä¸ªéé€’å‡çš„é¡ºåºåˆ—è¡¨
+//ºÏ²¢Á½¸ö·Çµİ¼õµÄË³ĞòÁĞ±í
 Status merge_list(SqList La, SqList Lb, SqList &Lc);
  
 
 
-//åˆå§‹åŒ–é¡ºåºåˆ—è¡¨
+//³õÊ¼»¯Ë³ĞòÁĞ±í
 Status init_sqlist(SqList &L)
 {
 	L.add = (Item *)malloc(LISTSIZE * sizeof(Item));
 	if(!L.add)
 	{
-		//å†…å­˜åˆ†é…å¤±è´¥
+		//ÄÚ´æ·ÖÅäÊ§°Ü
 		exit(OVERFLOW);
 	}
 	L.length = 0;
@@ -53,17 +58,17 @@ Status init_sqlist(SqList &L)
 	return OK;
 }
  
-//æ’å…¥å…ƒç´ eåˆ°é¡ºåºåˆ—è¡¨çš„çš„ç¬¬iä¸ªä½ç½®
+//²åÈëÔªËØeµ½Ë³ĞòÁĞ±íµÄµÄµÚi¸öÎ»ÖÃ
 Status insert_list(SqList &L, int i, Item e)
 {
 	if(L.length >= L.listsize)
 	{
-		printf("é¡ºåºåˆ—è¡¨å·²æ»¡ï¼Œæ— æ³•æ’å…¥\n");
+		printf("Ë³ĞòÁĞ±íÒÑÂú£¬ÎŞ·¨²åÈë\n");
 		return ERROR;
 	}
 	if(i < 0 || i > L.length)
 	{
-		printf("æ’å…¥ä½ç½®ä¸å¯¹\n");
+		printf("²åÈëÎ»ÖÃ²»¶Ô\n");
 		return ERROR;
 	}
  
@@ -77,12 +82,12 @@ Status insert_list(SqList &L, int i, Item e)
 }
  
  
-//åˆ é™¤ç¬¬iä¸ªå…ƒç´ ï¼Œå¹¶èµ‹å€¼ç»™e
+//É¾³ıµÚi¸öÔªËØ£¬²¢¸³Öµ¸øe
 Status delete_list(SqList &L, int i, Item &e)
 {
 	if(i < 0 || i > L.length)
 	{
-		printf("åˆ é™¤çš„ä½ç½®ä¸åˆæ³•");
+		printf("É¾³ıµÄÎ»ÖÃ²»ºÏ·¨");
 		return ERROR;
 	}
 	e = L.add[i - 1];
@@ -91,7 +96,7 @@ Status delete_list(SqList &L, int i, Item &e)
 	{
 		L.add[k - 1] = L.add[k];
 	}
-	//è¿™ç§å†™æ³•ä¹ŸOK
+	//ÕâÖÖĞ´·¨Ò²OK
 	/*
 	Item *p, *q;
 	p = &(L.add[i - 1]);
@@ -107,10 +112,10 @@ Status delete_list(SqList &L, int i, Item &e)
 }
  
  
-//æ˜¾ç¤ºé¡ºåºåˆ—è¡¨ä¸­çš„å…ƒç´ 
+//ÏÔÊ¾Ë³ĞòÁĞ±íÖĞµÄÔªËØ
 Status display_list(SqList L)
 {
-	printf("é¡ºåºåˆ—è¡¨ä¸­çš„å…ƒç´ ï¼š\n");
+	printf("Ë³ĞòÁĞ±íÖĞµÄÔªËØ£º\n");
 	for(int i = 0; i < L.length; i++)
 	{
 		printf("%c     ",L.add[i]);
@@ -119,7 +124,7 @@ Status display_list(SqList L)
 	return OK;
 }
  
-//åˆå¹¶ä¸¤ä¸ªéé€’å‡çš„é¡ºåºåˆ—è¡¨
+//ºÏ²¢Á½¸ö·Çµİ¼õµÄË³ĞòÁĞ±í
 Status merge_list(SqList La, SqList Lb, SqList &Lc)
 {
 	Item * pa, * pb, * pc;
@@ -148,7 +153,7 @@ Status merge_list(SqList La, SqList Lb, SqList &Lc)
 	}
 	*/
  
-	//ä¸Šé¢çš„æ³¨é‡Šå¯ç²¾ç®€ä¸ºä¸‹é¢çš„ä»£ç 
+	//ÉÏÃæµÄ×¢ÊÍ¿É¾«¼òÎªÏÂÃæµÄ´úÂë
 	while(pa < La.add + La.length && pb < Lb.add + Lb.length)
 	{
 		if(*pa < *pb)
@@ -177,9 +182,9 @@ void test_sequence()
  
 	Item e;
 	delete_list(L,2,e);
-	printf("è¢«åˆ é™¤çš„å…ƒç´ ä¸º: %c\n", e);
+	printf("±»É¾³ıµÄÔªËØÎª: %c\n", e);
  
-	printf("åˆ é™¤å…ƒç´ å,");
+	printf("É¾³ıÔªËØºó,");
 	display_list(L);
  
  
@@ -201,7 +206,7 @@ void test_sequence()
 	insert_list(Lb,7,'x');
  
 	merge_list(La,Lb,Lc);
-	printf("åˆå¹¶å,");
+	printf("ºÏ²¢ºó,");
 	display_list(Lc);
  
 }

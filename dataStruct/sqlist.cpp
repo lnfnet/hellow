@@ -3,7 +3,7 @@
 #define datatype int
 #define error printf
 
-#define sqlist_maxsize 40
+const int sqlist_maxsize = 40;
 
 typedef struct 
 {
@@ -12,7 +12,9 @@ typedef struct
 	
 }SqList;
 
-void insert_sqlist(SqList L,datatype x ,int i)
+SqList L;
+
+void insert_sqlist(SqList &L,datatype x ,int i)
 {
 	if(L.last==sqlist_maxsize)
 		error("表满");
@@ -27,7 +29,7 @@ void insert_sqlist(SqList L,datatype x ,int i)
 		
 }
 
-void delete_sqlist(SqList L,int i)
+void delete_sqlist(SqList &L,int i)
 {
 	if((i<1)||(i>L.last)) 
 		error("非法位置");
@@ -38,11 +40,12 @@ void delete_sqlist(SqList L,int i)
 				}		
 }
 
-void print_sqlist(SqList L)
+/*void print_sqlist(SqList L)
 {
 	for (int i=0;i<L.last-1;i++)
-		printf("%d",L.data[i]);
+		printf("%d\n",L.data[i]);
 }
+*/
 
 int local_sqlist()
 {
@@ -51,10 +54,9 @@ int local_sqlist()
 int main()
 {
 	SqList L; 
-	L.last=1;//initiate L
+	L.last=0;//initiate L
 	insert_sqlist(L,10,1);
 	insert_sqlist(L,20,2);
 	
-	print_sqlist(L);
 	return 0;	
 }
