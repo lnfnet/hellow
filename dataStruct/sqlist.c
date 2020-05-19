@@ -50,7 +50,12 @@ int local_sqlist()
 }
 void main()
 {
-
-	SqList L;  //initiate L
-	printf("初始化sqllist成功！");
+	SqList L; 
+	L.last=0;
+	 //initiate L
+	insert_sqlist(L,10,1);
+	insert_sqlist(L,20,2);
+	
+	print_sqlist(L);
+	
 }
