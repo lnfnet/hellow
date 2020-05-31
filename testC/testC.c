@@ -59,6 +59,17 @@ int  main(void)
 	result =  calculate(1.3,'+',3.0);
 	printf("the result is %lf",result);
 
+	size_t rows =0;
+	size_t columns = 0;
+	
+	printf("Enter the number of rouws\n");
+	scanf("%zd",&rows);
+	
+	printf("Enter the number of rouws\n");
+	scanf("%zd",&columns);
+
+	float arrays[rows][columns];
+
+
         return 0;
 }
-
