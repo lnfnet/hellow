@@ -1,4 +1,6 @@
 #include <stdio.h>
+#define ENDLINE '\n'
+
 
 enum enumtest{test1,test2};
 enum {red,orange,blue} color;
@@ -57,7 +59,7 @@ int  main(void)
 	}
 
 	result =  calculate(1.3,'+',3.0);
-	printf("the result is %lf",result);
+	printf("the result is %lf ENDLINE",result);
 
 	size_t rows =0;
 	size_t columns = 0;
@@ -65,11 +67,13 @@ int  main(void)
 	printf("Enter the number of rouws\n");
 	scanf("%zd",&rows);
 	
-	printf("Enter the number of rouws\n");
+	printf("Enter the number of columns\n");
 	scanf("%zd",&columns);
 
 	float arrays[rows][columns];
 
+	int number=99;
+	int* pnumber;
 
         return 0;
 }

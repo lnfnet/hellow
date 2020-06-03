@@ -9,7 +9,7 @@ https://www.tutorialspoint.com/cprogramming/c_constants.htm
 
 //#define LENGTH 10 
 #define WIDTH1  5
-#define NEWLINE '\n'
+//#define NEWLINE '\n'
 
 
 // Variable declaration:
@@ -18,8 +18,32 @@ extern int c;
 extern float f;
 
 // define
+/* function returning the max between two numbers */
+int max(int num1, int num2) {
 
+   /* local variable declaration */
+   int result;
+ 
+   if (num1 > num2)
+      result = num1;
+   else
+      result = num2;
+ 
+   return result; 
+}
 
+/* function definition to swap the values */
+void swap(int *x, int *y) {
+
+   int temp;
+   temp = *x;    /* save the value at address x */
+   *x = *y;      /* put y into x */
+   *y = temp;    /* put temp into y */
+  
+   return;
+}
+
+//main function
 int main(int argc, char** argv) {
 //data type 
     printf("CHAR_BIT    :   %d\n", CHAR_BIT);
@@ -63,5 +87,36 @@ int main(int argc, char** argv) {
    printf("value of area : %d", area);
    printf("%c", NEWLINE);
 
-    return 0;
+ /* local variable definition */
+   int i, j;
+   
+   for(i = 2; i<100; i++) {
+
+      for(j = 2; j <= (i/j); j++) 
+      if(!(i%j)) break; // if factor found, not prime
+      if(j > (i/j)) printf("%d is prime\n", i);
+	}
+///////////////////////////
+//test int max(int,int)
+
+a = 100;
+b = 200;
+
+int ret;
+
+ret = max(a,b);
+
+printf("the max number is %d.0\n",ret);
+///////////////////////////
+
+printf("the a is %d,and b is %d\n",a,b);
+
+swap(&a,&b);
+
+printf("the a is %d,and bis %d\n",a,b);
+
+
+
+/////////////////////////
+	return 0;  
 }
