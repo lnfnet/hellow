@@ -1,4 +1,8 @@
 #include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+
+
 #define ENDLINE '\n'
 
 
@@ -74,6 +78,54 @@ int  main(void)
 
 	int number=99;
 	int* pnumber;
+	pnumber = &number;
+//「指针」
+	long value = 9999L;
+	const long *pvalue = &value; 
+	//指向常量指针pvalue  不能修改pvalue指向的值 但可以指向新的对像
+	//  *value = 8888L; 不能修改
+	long Lnumber=888L;
+	pvalue=&Lnumber;
+	
+	int count =43;
+	int *const pcount =&count;
+	//常量指针 一直指向count
+	*pcount = 345;
+	
+	printf("count is %d,pcount is%d\n",count,*pcount);
+	
+	//数组指針
+	
+	char multiple[] = "a string";
+	char *pchar = multiple;
+    #ifdef __STDC_LIT_EXT1__   //假如定义了 c11标准可以使用下面的代码
+	for(int i =0 ; i < strnlen_s(multiple,sizeof(multiple));++i)
+		printf("multiple[%d] = %c * (p+%d) = %c &multiple[%d] = %p p+%d =%p\n",i,multiple[i],i,*(pchar+i),i,&multiple[i],i,pchar+i);	
+	#else
+	for(int i =0 ; i < strnlen(multiple,sizeof(multiple));++i)
+         printf("multiple[%d] = %c * (p+%d) = %c &multiple[%d] = %p p+%d =%p\n",i,multiple[i],i,*(pchar+i),i,&multiple[i],i,pchar+i);
+    #endif
+	//多维数组指针
+	char board[][3]={
+						{'1','2','3'},
+						{'4','5','6'},
+						{'7','8','9'},
+					};
+	printf("多维数组:%c\n",board[0][0]);
+	printf("多维数组:%c\n",*board[0]);
+	printf("多维数组:%c\n",**board);
 
+
+	//动态内存分配
+	//int pNumber =	(int*)malloc(100);
+	int PNumber = (int*)mallock(25*sizeof(int));
+	if(PNumber == NULL) //if(!Pnumber)
+	{
+		//cant mallock the memory for this code.
+		printf("can not malloc memory...please check !");
+		}
+	
+	
+///////////////////////////////////////////////////////////////		
         return 0;
 }
