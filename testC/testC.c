@@ -179,35 +179,53 @@ int  main(void)
         return 0;
 }
 
-
+//定义数组 输入数组 定义pstring copy数组到string  返回pstring
 char* str_in(void)
 {
 	char buf[BUF_LEN];
 	if(!gets_s(buf,BUF_LEN)
 	{
 		prinf("\n Error reading string.\n");
-		return NULL;
+		return NULL;  //假如没有分配到空间，返回空指针
 	}
-	if(buf[0]=='\0')
+	if(buf[0]=='\0')  //假如字符数组第一个字符为'\0' 返回空指针
 		return NULL;
 	size_t str_len = strnlen_s(buf,BUF_LEN)+1;
 	char *pString = malloc(str_len);
 	
-	if(!pString)
+	if(!pString) //假如没有分配到指針则返回null 
 	{
 		printf("memory allocation failure.\n");
+		return NULL;
 	}
 	
-}
 
-void str_sort(const char**,size_t)
+	strcpy_s(pString,str_len,buf);  //复制字符串
+	return pString;
+}
+//排序
+void str_sort(const char **p,size_t)
 {
+	bool sorted = false;
+	while(!sortd)
+	{
+		sorted = true;
+		for(int i =0 ;i<n -1; ++i)
+		{
+			if(strcmp(p[i],p[i+1])>0)
+			{
+				sorted = false;
+				swap(&p[i],&p[i+1];
+			}
+		}
+	}
 }
 
+//交换
 void swap(const char**,const char**)
 {
 }
-
+//输出
 void str_out(const char* const*,size_t)
 {
 
