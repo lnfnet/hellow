@@ -6,6 +6,9 @@
 #define BUF_LEN 256
 #define INIT_NSTR 2
 #define NSTR_INCR 2
+#define gets_s gets
+#define strnlen_s strnlen
+#define strcpy_s strcpy
 
 
 #define ENDLINE '\n'
@@ -130,7 +133,7 @@ int  main(void)
 
 	//动态内存分配
 	//int pNumber =	(int*)malloc(100);
-	int PNumber = (int*)mallock(25*sizeof(int));
+	int PNumber = (int*)malloc(25*sizeof(int));
 	if(PNumber == NULL) //if(!Pnumber)
 	{
 		//cant mallock the memory for this code.
@@ -144,17 +147,17 @@ int  main(void)
 		printf("failed to allocate memory for string ");
 		exit(1);		
 	}
-	char **pTemb = NULL;
+	char **pTemp = NULL;
 	size_t str_count = 0;
 	char *pStr = NULL;
 	printf("Enter one strying per line.press Enter to end:\n");
 
-	while((pStr = str_in() != NULL)
+	while((pStr = str_in()) != NULL)
 	{
 		if(str_count == pS_size)
 		{
-			pS_size + = NSTR_INCR;
-			if(!(pTemp = realloc(ps,pS_size*sizeof(char*))))
+			pS_size =+ NSTR_INCR;
+			if(!(pTemp = realloc(pS,pS_size*sizeof(char*))))
 			{
 				printf("Memory allocation for array of strings failed.\n");
 				return 2;	
@@ -166,6 +169,8 @@ int  main(void)
 	free_memory(pS,str_count);
 
 	}
+return 0;
+}
 	
 ///////////////////////////////////////////////////////////////	
 //[函数]
@@ -176,16 +181,15 @@ int  main(void)
 	}
 ///////////////////////////////////////////////////
 	
-        return 0;
-}
+    
 
 //定义数组 输入数组 定义pstring copy数组到string  返回pstring
 char* str_in(void)
 {
 	char buf[BUF_LEN];
-	if(!gets_s(buf,BUF_LEN)
+	if(!gets_s(buf,BUF_LEN))
 	{
-		prinf("\n Error reading string.\n");
+		printf("\n Error reading string.\n");
 		return NULL;  //假如没有分配到空间，返回空指针
 	}
 	if(buf[0]=='\0')  //假如字符数组第一个字符为'\0' 返回空指针
@@ -204,34 +208,47 @@ char* str_in(void)
 	return pString;
 }
 //排序
-void str_sort(const char **p,size_t)
+void str_sort(const char **p,size_t n)
 {
 	bool sorted = false;
-	while(!sortd)
+	while(!sorted)
 	{
 		sorted = true;
-		for(int i =0 ;i<n -1; ++i)
+		for(int i = 0 ;i < n-1; ++i)
 		{
 			if(strcmp(p[i],p[i+1])>0)
 			{
 				sorted = false;
-				swap(&p[i],&p[i+1];
+				swap(&p[i],&p[i+1]);
 			}
 		}
 	}
 }
 
-//交换
-void swap(const char**,const char**)
+//交换指向指针的指针
+void swap(const char** p1,const char** p2)
 {
+	const char *pTemp = *p1;
+	*p1 = *p2;
+	*p2 = pTemp;
 }
 //输出
-void str_out(const char* const*,size_t)
+void str_out(const char* const* pStr,size_t n)
 {
-
+	printf("The sorted strings are:\n");
+	for(size_t i=0;i<n; ++i)
+		printf("%s\n",pStr[i]);
+	
 }
-
-void free_memory(char**,size_t)
+//指针擦除
+void free_memory(char** pS,size_t n)
 {
+	for(size_t i=0;i<n;i++)
+	{
+		free(pS[i]);
+		pS[i]=NULL;
 
+	}
+	free(pS);
+	pS=NULL;
 }
