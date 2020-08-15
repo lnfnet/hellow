@@ -1,0 +1,419 @@
+LAN 			        -interface GigabitEthernet0/0	           1000M 
+
+Dialer1-075505707848@163.gd         -interface GigabitEthernet0/3/1                  
+
+Dialer2-07554201967740@163.gd password 0 ADPXFKGI        -interface GigabitEthernet0/2                       1000M
+
+Dialer3-07554201969745@163.gd password 0 EUKWFTQP         -interface GigabitEthernet0/1                       1000M
+
+
+
+login as: lainanfei
+Using keyboard-interactive authentication.
+Password:
+
+3925>
+3925>
+3925>en
+3925>enable
+Password:
+3925#
+3925#
+3925#
+3925#show running
+Building configuration...
+
+Current configuration : 11420 bytes
+!
+! Last configuration change at 17:37:13 bj Thu Jul 16 2020 by lainanfei
+! NVRAM config last updated at 08:12:21 bj Fri Jul 17 2020 by lainanfei
+! NVRAM config last updated at 08:12:21 bj Fri Jul 17 2020 by lainanfei
+version 15.2
+service timestamps debug datetime msec
+service timestamps log datetime msec
+no service password-encryption
+!
+hostname 3925
+!
+boot-start-marker
+boot-end-marker
+!
+!
+enable secret 5 $1$Z3c/$OS.1ig.sA3.GyHXC9.WsE.
+enable password 2018
+!
+aaa new-model
+!
+!
+aaa authentication login vpn_authen local
+!
+!
+!
+!
+!
+aaa session-id common
+!
+clock timezone bj 8 0
+!
+crypto pki token default removal timeout 0
+!
+crypto pki trustpoint TP-self-signed-2302169108
+ enrollment selfsigned
+ subject-name cn=IOS-Self-Signed-Certificate-2302169108
+ revocation-check none
+ rsakeypair TP-self-signed-2302169108
+!
+!
+crypto pki certificate chain TP-self-signed-2302169108
+ certificate self-signed 01
+  3082022B 30820194 A0030201 02020101 300D0609 2A864886 F70D0101 05050030
+  31312F30 2D060355 04031326 494F532D 53656C66 2D536967 6E65642D 43657274
+  69666963 6174652D 32333032 31363931 3038301E 170D3137 30313135 30383038
+  34345A17 0D323030 31303130 30303030 305A3031 312F302D 06035504 03132649
+  4F532D53 656C662D 5369676E 65642D43 65727469 66696361 74652D32 33303231
+  36393130 3830819F 300D0609 2A864886 F70D0101 01050003 818D0030 81890281
+  8100D860 70BC0C8D FD894F40 FDA2BA0E A93EEA4B 99522DE4 C68F42FE 8ED6C3B5
+  FC9A7998 66499E0D 3FE5F69D C8844C4D D38E8D0A 156AF0A9 200AE08A 83FF8630
+  BA883832 3D05B225 780F36B0 FEBE562F 00D3FE30 815264E0 DB62AD1F 02F90682
+  A42D8A0F 74CF5648 1F118B98 D649BA73 7783A582 01989784 A4E5CED8 0232BA8F
+  26D10203 010001A3 53305130 0F060355 1D130101 FF040530 030101FF 301F0603
+  551D2304 18301680 14F3AC13 148ADE38 861D3CB8 32D5C861 F68E8278 F0301D06
+  03551D0E 04160414 F3AC1314 8ADE3886 1D3CB832 D5C861F6 8E8278F0 300D0609
+  2A864886 F70D0101 05050003 818100BE 3CA41DAC 98D3D7CE 3230BCB9 F360603F
+  A7F53A8A FC94235C 9F863A12 03DB5DE5 CD12D34A 677B66D3 FB084960 8CCC6DE7
+  3F3B8D11 99AB4184 7FFF4861 12D519FA E71071F3 C71F971B AE4EBFE5 47029FF6
+  CC83D75F 7E860BA2 1708310A 15366377 E7F5461E C5E8896F ED5F1F20 99B8CE78
+  A54014F6 071EAFF1 EFD182BA 8FD6BE
+        quit
+no ipv6 cef
+no ip source-route
+ip auth-proxy max-login-attempts 5
+ip admission max-login-attempts 5
+!
+!
+!
+!
+!
+no ip domain lookup
+ip domain name cisco.yg91.info
+ip cef
+login block-for 300 attempts 2 within 10
+login delay 2
+login quiet-mode access-class 5
+!
+multilink bundle-name authenticated
+!
+vpdn enable
+!
+vpdn-group 1
+ request-dialin
+  protocol l2tp
+!
+vpdn-group pppoe
+ request-dialin
+  protocol l2tp
+!
+!
+license udi pid C3900-SPE100/K9 sn FOC15200RNW
+!
+!
+username liulei privilege 15 secret 5 $1$.AKV$DXX4/YtMW/qVcDpvZipC11
+username zhoujishen privilege 3 secret 5 $1$R1cS$k9tL4Eh5ykF5QvwWRdYx50
+username lainanfei privilege 15 secret 5 $1$8wDY$4Xu.Z5HckWtKg4/yDvMzu1
+username moxuesong privilege 15 secret 5 $1$dc7z$qBqXIYB5dA9.K2khkHiKZ1
+!
+redundancy
+!
+!
+!
+!
+!
+ip ssh authentication-retries 5
+!
+!
+!
+!
+!
+!
+!
+!
+!
+interface Embedded-Service-Engine0/0
+ no ip address
+ shutdown
+!
+interface GigabitEthernet0/0
+ description for in
+ ip address 192.168.8.100 255.255.255.0
+ ip access-group 120 in
+ ip access-group 120 out
+ ip nat inside
+ ip virtual-reassembly in max-reassemblies 1024
+ ip virtual-reassembly out max-reassemblies 1024
+ ip tcp adjust-mss 1432
+ ip policy route-map yangguang
+ duplex auto
+ speed auto
+!
+interface GigabitEthernet0/1
+ description for ADSL-3
+ no ip address
+ duplex auto
+ speed auto
+ pppoe enable group global
+ pppoe-client dial-pool-number 3
+!
+interface GigabitEthernet0/2
+ description for ADSL-2
+ no ip address
+ duplex auto
+ speed auto
+ pppoe enable group global
+ pppoe-client dial-pool-number 2
+!
+interface FastEthernet0/3/0
+ description for out
+ ip address 183.239.166.211 255.255.255.240
+ ip nat outside
+ ip virtual-reassembly in
+ duplex auto
+ speed auto
+!
+interface FastEthernet0/3/1
+ description for ADSL-1
+ no ip address
+ duplex auto
+ speed auto
+ pppoe enable group global
+ pppoe-client dial-pool-number 1
+!
+interface Dialer1
+ ip address negotiated
+ no ip redirects
+ no ip unreachables
+ no ip proxy-arp
+ ip mtu 1492
+ ip nat outside
+ ip virtual-reassembly in
+ encapsulation ppp
+ dialer pool 1
+ dialer-group 1
+ ppp authentication pap callin
+ ppp pap sent-username 075505707848@163.gd password 0 FPNQMJSQ
+ no cdp enable
+!
+interface Dialer2
+ ip address negotiated
+ no ip redirects
+ no ip unreachables
+ no ip proxy-arp
+ ip mtu 1492
+ ip nat outside
+ no ip virtual-reassembly in
+ encapsulation ppp
+ dialer pool 2
+ dialer-group 1
+ ppp authentication pap callin
+ ppp pap sent-username 07554201967740@163.gd password 0 ADPXFKGI
+ no cdp enable
+!
+interface Dialer3
+ ip address negotiated
+ ip mtu 1492
+ ip nat outside
+ no ip virtual-reassembly in
+ encapsulation ppp
+ dialer pool 3
+ dialer-group 1
+ ppp authentication pap callin
+ ppp pap sent-username 07554201969745@163.gd password 0 EUKWFTQP
+ no cdp enable
+!
+ip forward-protocol nd
+!
+no ip http server
+no ip http secure-server
+!
+ip dns server
+ip nat inside source list 1 interface Dialer1 overload
+ip nat inside source list 2 interface Dialer2 overload
+ip nat inside source list 3 interface Dialer3 overload
+ip nat inside source list 4 interface FastEthernet0/3/0 overload
+ip route 0.0.0.0 0.0.0.0 183.239.166.209
+ip route 172.16.167.0 255.255.255.0 192.168.8.1
+ip route 192.168.0.0 255.255.255.0 192.168.8.1
+ip route 192.168.60.0 255.255.255.0 192.168.8.1
+ip route 192.168.61.0 255.255.255.0 192.168.8.1
+ip route 192.168.62.0 255.255.255.0 192.168.8.1
+ip route 192.168.65.0 255.255.255.0 192.168.8.1
+ip route 192.168.67.0 255.255.255.0 192.168.8.1
+ip route 192.168.68.0 255.255.255.0 192.168.8.1
+ip route 192.168.100.0 255.255.255.0 192.168.8.1
+ip route 192.168.168.0 255.255.255.0 192.168.8.1
+!
+!
+logging trap debugging
+logging 192.168.100.150
+access-list 1 permit 192.168.67.0 0.0.0.255
+access-list 1 permit 192.168.61.0 0.0.0.255
+access-list 2 permit 192.168.65.0 0.0.0.255
+access-list 2 permit 192.168.60.0 0.0.0.255
+access-list 3 permit 192.168.68.0 0.0.0.255
+access-list 3 permit 192.168.0.0 0.0.0.255
+access-list 4 permit 192.168.100.0 0.0.0.255
+access-list 10 permit any
+access-list 11 permit any
+access-list 120 deny   ip any any fragments
+access-list 120 permit ip any any
+dialer-list 1 protocol ip permit
+!
+route-map yangguang permit 10
+ match ip address 1
+ set interface Dialer1
+!
+route-map yangguang permit 20
+ match ip address 2
+ set interface Dialer2
+!
+route-map yangguang permit 30
+ match ip address 3
+ set interface Dialer3
+!
+route-map yangguang permit 40
+ match ip address 4
+ set interface FastEthernet0/3/0
+!
+!
+snmp-server community public RO
+snmp-server contact isWrite
+snmp-server enable traps snmp authentication linkdown linkup coldstart warmstart
+snmp-server enable traps vrrp
+snmp-server enable traps transceiver all
+snmp-server enable traps ds1
+snmp-server enable traps call-home message-send-fail server-fail
+snmp-server enable traps tty
+snmp-server enable traps eigrp
+snmp-server enable traps ospf state-change
+snmp-server enable traps ospf errors
+snmp-server enable traps ospf retransmit
+snmp-server enable traps ospf lsa
+snmp-server enable traps ospf cisco-specific state-change nssa-trans-change
+snmp-server enable traps ospf cisco-specific state-change shamlink interface
+snmp-server enable traps ospf cisco-specific state-change shamlink neighbor
+snmp-server enable traps ospf cisco-specific errors
+snmp-server enable traps ospf cisco-specific retransmit
+snmp-server enable traps ospf cisco-specific lsa
+snmp-server enable traps license
+snmp-server enable traps envmon
+snmp-server enable traps ethernet cfm cc mep-up mep-down cross-connect loop config
+snmp-server enable traps ethernet cfm crosscheck mep-missing mep-unknown service-up
+snmp-server enable traps flash insertion removal
+snmp-server enable traps auth-framework sec-violation
+snmp-server enable traps c3g
+snmp-server enable traps ds3
+snmp-server enable traps entity-sensor threshold
+snmp-server enable traps adslline
+snmp-server enable traps vdsl2line
+snmp-server enable traps icsudsu
+snmp-server enable traps isdn call-information
+snmp-server enable traps isdn layer2
+snmp-server enable traps isdn chan-not-avail
+snmp-server enable traps isdn ietf
+snmp-server enable traps ds0-busyout
+snmp-server enable traps ds1-loopback
+snmp-server enable traps energywise
+snmp-server enable traps vstack
+snmp-server enable traps mac-notification
+snmp-server enable traps bgp
+snmp-server enable traps isis
+snmp-server enable traps rf
+snmp-server enable traps aaa_server
+snmp-server enable traps atm subif
+snmp-server enable traps cef resource-failure peer-state-change peer-fib-state-change inconsistency
+snmp-server enable traps memory bufferpeak
+snmp-server enable traps cnpd
+snmp-server enable traps config-copy
+snmp-server enable traps config
+snmp-server enable traps config-ctid
+snmp-server enable traps entity
+snmp-server enable traps fru-ctrl
+snmp-server enable traps resource-policy
+snmp-server enable traps event-manager
+snmp-server enable traps frame-relay multilink bundle-mismatch
+snmp-server enable traps frame-relay
+snmp-server enable traps frame-relay subif
+snmp-server enable traps hsrp
+snmp-server enable traps ipmulticast
+snmp-server enable traps msdp
+snmp-server enable traps mvpn
+snmp-server enable traps nhrp nhs
+snmp-server enable traps nhrp nhc
+snmp-server enable traps nhrp nhp
+snmp-server enable traps nhrp quota-exceeded
+snmp-server enable traps pim neighbor-change rp-mapping-change invalid-pim-message
+snmp-server enable traps pppoe
+snmp-server enable traps cpu threshold
+snmp-server enable traps rsvp
+snmp-server enable traps syslog
+snmp-server enable traps l2tun session
+snmp-server enable traps l2tun pseudowire status
+snmp-server enable traps vtp
+snmp-server enable traps waas
+snmp-server enable traps ipsla
+snmp-server enable traps bfd
+snmp-server enable traps gdoi gm-start-registration
+snmp-server enable traps gdoi gm-registration-complete
+snmp-server enable traps gdoi gm-re-register
+snmp-server enable traps gdoi gm-rekey-rcvd
+snmp-server enable traps gdoi gm-rekey-fail
+snmp-server enable traps gdoi ks-rekey-pushed
+snmp-server enable traps gdoi gm-incomplete-cfg
+snmp-server enable traps gdoi ks-no-rsa-keys
+snmp-server enable traps gdoi ks-new-registration
+snmp-server enable traps gdoi ks-reg-complete
+snmp-server enable traps firewall serverstatus
+snmp-server enable traps ike policy add
+snmp-server enable traps ike policy delete
+snmp-server enable traps ike tunnel start
+snmp-server enable traps ike tunnel stop
+snmp-server enable traps ipsec cryptomap add
+snmp-server enable traps ipsec cryptomap delete
+snmp-server enable traps ipsec cryptomap attach
+snmp-server enable traps ipsec cryptomap detach
+snmp-server enable traps ipsec tunnel start
+snmp-server enable traps ipsec tunnel stop
+snmp-server enable traps ipsec too-many-sas
+snmp-server enable traps vrfmib vrf-up vrf-down vnet-trunk-up vnet-trunk-down
+snmp-server host 192.168.67.64 version 2c public
+!
+!
+!
+control-plane
+!
+!
+!
+line con 0
+ password sunhospital
+ logging synchronous
+line aux 0
+ access-class 5 in
+line 2
+ access-class 5 in
+ no activation-character
+ no exec
+ transport preferred none
+ transport input all
+ transport output pad telnet rlogin lapb-ta mop udptn v120 ssh
+ stopbits 1
+line vty 0 4
+ access-class 5 in
+ transport input ssh
+line vty 5 15
+ access-class 5 in
+ transport input ssh
+!
+scheduler allocate 20000 1000
+!
+end
+
+3925#
