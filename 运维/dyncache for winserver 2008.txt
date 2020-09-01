@@ -1,0 +1,1 @@
+sc create DynCache binpath= %SystemRoot%\System32\DynCache.exe start= auto type= own DisplayName= "Dynamic Cache Service" 
