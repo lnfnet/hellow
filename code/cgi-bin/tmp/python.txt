@@ -1,0 +1,16 @@
+直接调用CGI是比较古老的方式了，如果不是专门为了学习CGI技术，单纯的做服务开发，可以看下通过WSGI实现的python服务，更高级的就使用flask，tornado这样的框架。
+
+
+
+如果在Python CGI脚本中引发异常，则会出现此错误。
+
+找出问题所在的一个好方法是在CGI脚本的开头调用Python的CGI module debug helper函数，如下所示：
+
+cgitb.enable(display=0, logdir=OUTDIR)
+
+其中OUTDIR是目录名。如果您的CGI脚本引发了一些异常，那么Apache会将一个HTML文件放入该目录。这个文件有一些垃圾名，比如tmpw4olz3xr.html，它的末尾包含了包含在HTML注释（<!--）中的Python堆栈跟踪。。。-->）。这是帮助您解决问题的信息。
+
+注：
+
+参数display=0表示不显示错误详细信息 给你的用户。
+你应该评论一下 cgitb.enable(...)当您确定脚本工作正常时。
