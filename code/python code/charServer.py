@@ -2,15 +2,15 @@ import socket
 import select
 class ChatServer:
     def __init__( self, port ):
-	self.port = port;
-	self.srvsock = socket.socket( socket.AF_INET, socket.SOCK_STREAM )
-	self.srvsock.setsockopt( socket.SOL_SOCKET, socket.SO_REUSEADDR, 1 )
-	self.srvsock.bind( ("", port) )
-	self.srvsock.listen( 5 )
-	self.descriptors = [self.srvsock]
-	print 'ChatServer started on port %s' % port
+        self.port = port;
+        self.srvsock = socket.socket( socket.AF_INET, socket.SOCK_STREAM )
+        self.srvsock.setsockopt( socket.SOL_SOCKET, socket.SO_REUSEADDR, 1 )
+        self.srvsock.bind( ("127.0.0.1", port) )
+        self.srvsock.listen( 5 )
+        self.descriptors = [self.srvsock]
+        print 'ChatServer started on port %s' % port
     def run( self ):
-	while 1:
+        while 1:
             # Await an event on a readable socket descriptor
             (sread, swrite, sexc) = select.select( self.descriptors, [], [] )
             # Iterate through the tagged read descriptors
@@ -45,7 +45,7 @@ class ChatServer:
             if sock != self.srvsock and sock != omit_sock:
                 sock.send(str)
         print str,
-
-
-myServer = ChatServer( 2626 )
-myServer.run()
+        
+if __name__== "__main__":
+    myServer = ChatServer( 2626 )
+    myServer.run()
